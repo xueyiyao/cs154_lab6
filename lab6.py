@@ -85,15 +85,4 @@ temp_out = alu(data0, data1, sh, func)
 alu_out <<= temp_out
 
 rf[rd] <<= alu_out
-"""
-init_values = {addr: 9 for addr in range(0, 2**rf.addrwidth)}
-memvals = {rf: init_values}
 
-print("---------memories----------")
-print(pyrtl.working_block())
-
-sim_trace = pyrtl.SimulationTrace()
-sim = pyrtl.Simulation(tracer=sim_trace, memory_value_map=memvals)
-
-sim_trace.render_trace()
-"""
