@@ -48,14 +48,16 @@ def alu (rs, rt, sh, func):
     op4 = rs ^ rt
     # Operation 5: SLL
     op5 = pyrtl.corecircuits.shift_left_logical(rt, sh)
-    # Operation 6: SRA
-    op6 = pyrtl.corecircuits.shift_right_arithmetic(rt, sh)
-    # Operation 7: SLT
+    # Operation 6: SRL 
+    op7 = pyrtl.corecircuits.shift_right_logical(rt, sh)
+    # Operation 7: SRA
+    op8 = pyrtl.corecircuits.shift_right_arithmetic(rt, sh)
+    # Operation 8: SLT
     with pyrtl.conditional_assignment:
         with rs < rt:
-            op7 = 1
+            op9 = 0x0001
         with rs >= rt:
-            op7 = 0
+            op9 = 0x0000
     
     alu_out = pyrtl.WireVector(bitwidth=16)
     # < add your code here >
@@ -72,10 +74,12 @@ def alu (rs, rt, sh, func):
             alu_out |= op4
         with func==0:
             alu_out |= op5
-        with func==3:
+        with func==2:
             alu_out |= op6
-        with func==42:
+        with func==3:
             alu_out |= op7
+        with func==42:
+            alu_out |= op8
     return alu_out
 
 temp_out = alu(data0, data1, sh, func)
