@@ -82,4 +82,3 @@ temp_out = alu(data0, data1, sh, func)
 alu_out <<= temp_out
 
 rf[rd] <<= alu_out
-
