@@ -55,9 +55,9 @@ def alu (rs, rt, sh, func):
     # Operation 8: SLT
     with pyrtl.conditional_assignment:
         with rs < rt:
-            op8 = 0
-        with rs >= rt:
             op8 = 1
+        with rs >= rt:
+            op8 = 0
         
     alu_out = pyrtl.WireVector(bitwidth=16)
     # < add your code here >
