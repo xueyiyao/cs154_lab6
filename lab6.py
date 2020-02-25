@@ -53,12 +53,8 @@ def alu (rs, rt, sh, func):
     # Operation 7: SRA
     op7 = pyrtl.corecircuits.shift_right_arithmetic(rt, sh)
     # Operation 8: SLT
-    with pyrtl.conditional_assignment:
-        with rs < rt:
-            op8 = 1
-        with rs >= rt:
-            op8 = 0
-        
+    op8 = pyrtl.corecircuits.signed_lt(rs, rt)
+    
     alu_out = pyrtl.WireVector(bitwidth=16)
     # < add your code here >
     with pyrtl.conditional_assignment:
