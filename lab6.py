@@ -33,7 +33,7 @@ data0 = pyrtl.WireVector(bitwidth=16, name='data0')
 data1 = pyrtl.WireVector(bitwidth=16, name='data1')
 
 data0 <<= rf[rs]
-data1 <<= rf[rd]
+data1 <<= rf[rt]
     
 def alu (rs, rt, sh, func):
     # Operation 0: ADD
